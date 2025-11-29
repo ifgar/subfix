@@ -1,6 +1,7 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:subfix/components/file_selector.dart';
+import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/text_styles.dart';
 
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 4),
               FileSelector(
+                selectedFileName: selectedFileName,
                 onPressed: () async {
                   const type = XTypeGroup(label: 'SRT', extensions: ['srt']);
                   final file = await openFile(acceptedTypeGroups: [type]);
@@ -45,90 +47,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     selectedFileName = file.name;
                   });
                 },
-                selectedFileName: selectedFileName,
               ),
               SizedBox(height: 16),
-              Row(
-                children: [
-                  Text("Offset (s):", style: TextStyles.bodyText),
-                  SizedBox(width: 8),
-                  SizedBox(
-                    width: 56,
-                    height: 32,
-                    child: TextField(
-                      controller: offsetController,
-                      cursorColor: AppColors.accentBlue,
-                      style: TextStyles.bodyText,
-                      onChanged: (value) {
-                        final v = value.replaceAll(",", ".");
+              OffsetSelector(
+                offsetController: offsetController,
+                onChanged: (value) {
+                  final v = value.replaceAll(",", ".");
 
-                        final offset = double.tryParse(v);
-                        if (offset != null) {
-                          setState(() {
-                            selectedOffset = offset;
-                          });
-                        }
-                      },
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 2, right: 2),
-                        filled: true,
-                        fillColor: AppColors.backgroundLight,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.secondary),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.secondary),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 4),
-                  SizedBox(
-                    height: 28,
-                    width: 28,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        setState(() {
-                          selectedOffset -= 0.1;
-                          offsetController.text = selectedOffset
-                              .toStringAsFixed(2);
-                        });
-                      },
-                      mini: true,
-                      backgroundColor: AppColors.backgroundDark,
-                      shape: CircleBorder(),
-                      child: Icon(
-                        Icons.remove_circle,
-                        size: 28,
-                        color: AppColors.accentBlue,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 4),
-                  SizedBox(
-                    height: 28,
-                    width: 28,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        setState(() {
-                          selectedOffset += 0.1;
-                          offsetController.text = selectedOffset
-                              .toStringAsFixed(2);
-                        });
-                      },
-                      mini: true,
-                      backgroundColor: AppColors.backgroundDark,
-                      shape: CircleBorder(),
-                      child: Icon(
-                        Icons.add_circle,
-                        size: 28,
-                        color: AppColors.accentBlue,
-                      ),
-                    ),
-                  ),
-                ],
+                  final offset = double.tryParse(v);
+                  if (offset != null) {
+                    setState(() {
+                      selectedOffset = offset;
+                    });
+                  }
+                },
+                onDecrease: () {
+                  setState(() {
+                    selectedOffset -= 0.1;
+                    offsetController.text = selectedOffset.toStringAsFixed(2);
+                  });
+                },
+                onIncrease: () {
+                  setState(() {
+                    selectedOffset += 0.1;
+                    offsetController.text = selectedOffset.toStringAsFixed(2);
+                  });
+                },
               ),
               SizedBox(height: 16),
               Row(
