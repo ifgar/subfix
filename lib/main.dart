@@ -7,14 +7,13 @@ import 'package:window_manager/window_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if(Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
-    
+  if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
     await windowManager.ensureInitialized();
 
     WindowOptions opts = const WindowOptions(
-      size: Size(500, 700),  // default size
+      size: Size(500, 200), // default size
       center: true,
-      minimumSize: Size(500, 700) // minimum size
+      minimumSize: Size(500, 200), // minimum size
     );
 
     windowManager.waitUntilReadyToShow(opts, () async {

@@ -1,5 +1,4 @@
 import 'package:file_selector/file_selector.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/text_styles.dart';
@@ -83,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text("Offset (s):", style: TextStyles.bodyText),
                   SizedBox(width: 8),
                   SizedBox(
-                    width: 48,
+                    width: 56,
                     height: 32,
                     child: TextField(
                       controller: offsetController,
@@ -117,35 +116,63 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(width: 4),
                   SizedBox(
                     height: 28,
+                    width: 28,
                     child: FloatingActionButton(
                       onPressed: () {
                         setState(() {
                           selectedOffset -= 0.1;
-                          offsetController.text = selectedOffset.toStringAsFixed(2);
+                          offsetController.text = selectedOffset
+                              .toStringAsFixed(2);
                         });
                       },
                       mini: true,
-                      backgroundColor: AppColors.accentBlue,
-                      foregroundColor: AppColors.backgroundDark,
+                      backgroundColor: AppColors.backgroundDark,
                       shape: CircleBorder(),
-                      child: Icon(Icons.remove),
+                      child: Icon(
+                        Icons.remove_circle,
+                        size: 28,
+                        color: AppColors.accentBlue,
+                      ),
                     ),
                   ),
+                  SizedBox(width: 4),
                   SizedBox(
                     height: 28,
+                    width: 28,
                     child: FloatingActionButton(
                       onPressed: () {
                         setState(() {
                           selectedOffset += 0.1;
-                          offsetController.text = selectedOffset.toStringAsFixed(2);
+                          offsetController.text = selectedOffset
+                              .toStringAsFixed(2);
                         });
                       },
                       mini: true,
-                      backgroundColor: AppColors.accentBlue,
-                      foregroundColor: AppColors.backgroundDark,
+                      backgroundColor: AppColors.backgroundDark,
                       shape: CircleBorder(),
-                      child: Icon(Icons.add),
+                      child: Icon(
+                        Icons.add_circle,
+                        size: 28,
+                        color: AppColors.accentBlue,
+                      ),
                     ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(0, 40),
+                      backgroundColor: AppColors.accentBlue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(8),
+                      ),
+                    ),
+                    child: Text("Apply", style: TextStyles.buttonText),
                   ),
                 ],
               ),
