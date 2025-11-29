@@ -11,7 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String selectedFilePath = "Select a file";
+  String selectedFilePath = "Select a file...";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadiusGeometry.circular(8),
                   ),
                 ),
-                child: Text("Select file", style: TextStyles.buttonText),
+                child: Text("Select", style: TextStyles.buttonText),
               ),
             ],
           ),
