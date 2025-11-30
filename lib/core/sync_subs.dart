@@ -127,3 +127,5 @@ Future<void> saveSrt(String path, String content, double offset) async {
 
   await File(newPath).writeAsString(content);
 }
+
+//TODO: UTF-8 file checker

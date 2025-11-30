@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subfix/components/file_selector.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/sync_subs.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -79,7 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      sync(selectedFilePath, selectedOffset);
+                    },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(0, 40),
                       backgroundColor: AppColors.accentBlue,
