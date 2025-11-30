@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:subfix/core/offset.dart';
 
 Offset processOffset(double offset) {
@@ -58,8 +60,70 @@ String formatTime(int h, int m, int s, int ms) {
     s = 0;
     ms = 0;
   }
-  return "${h.toString().padLeft(2,'0')}:"
-       "${m.toString().padLeft(2,'0')}:"
-       "${s.toString().padLeft(2,'0')},"
-       "${ms.toString().padLeft(3,'0')}";
+
+  return "${h.toString().padLeft(2, '0')}:"
+      "${m.toString().padLeft(2, '0')}:"
+      "${s.toString().padLeft(2, '0')},"
+      "${ms.toString().padLeft(3, '0')}";
+}
+
+Future<void> sync(String path, double offset) async {
+  final file = File(path);
+  if (!await file.exists()) return;
+
+  final lines = await file.readAsLines();
+  final buffer = StringBuffer();
+
+  final off = processOffset(offset);
+
+  for (final line in lines) {
+    if (line.contains("-->")) {
+      final partes = line.split(" --> ");
+
+      final start = partes[0];
+      final end = partes[1];
+
+      final startTokens = start.split(RegExp(r'[:,]'));
+      final hS = int.parse(startTokens[0]);
+      final mS = int.parse(startTokens[1]);
+      final sS = int.parse(startTokens[2]);
+      final msS = int.parse(startTokens[3]);
+
+      final endTokens = end.split(RegExp(r'[:,]'));
+      final hE = int.parse(endTokens[0]);
+      final mE = int.parse(endTokens[1]);
+      final sE = int.parse(endTokens[2]);
+      final msE = int.parse(endTokens[3]);
+
+      final startFinal = formatTime(
+        hS + off.h,
+        mS + off.m,
+        sS + off.s,
+        msS + off.ms,
+      );
+
+      final endFinal = formatTime(
+        hE + off.h,
+        mE + off.m,
+        sE + off.s,
+        msE + off.ms,
+      );
+
+      buffer.writeln("$startFinal --> $endFinal");
+    } else {
+      buffer.writeln(line);
+    }
+  }
+
+  await saveSrt(path, buffer.toString(), offset);
+}
+
+Future<void> saveSrt(String path, String content, double offset) async {
+  final file = File(path);
+  final folder = file.parent.path;
+
+  final name = file.uri.pathSegments.last.replaceAll('.srt', '');
+  final newPath = "$folder/$name[$offset].srt";
+
+  await File(newPath).writeAsString(content);
 }
