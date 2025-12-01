@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:subfix/core/encoding.dart';
 import 'package:subfix/core/offset.dart';
 
 Offset processOffset(double offset) {
@@ -71,9 +73,16 @@ Future<void> sync(String path, double offset) async {
   final file = File(path);
   if (!await file.exists()) return;
 
-  final lines = await file.readAsLines();
-  final buffer = StringBuffer();
+  final bytes = await file.readAsBytes();
+  final isUtf = await isUtf8(path);
 
+  final content = isUtf
+      ? utf8.decode(bytes)
+      : latin1.decode(bytes, allowInvalid: true);
+
+  final lines = content.split('\n');
+
+  final buffer = StringBuffer();
   final off = processOffset(offset);
 
   for (final line in lines) {
