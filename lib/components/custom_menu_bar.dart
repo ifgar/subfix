@@ -11,6 +11,10 @@ class CustomMenuBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MenuBarWidget(
+      menuButtonStyle: ButtonStyle(
+        backgroundColor: WidgetStatePropertyAll(AppColors.backgroundLight),
+        // TODO: Improve menuButtonStyle, possibly use backgroundBuilder for hover color and box border
+      ),
       barButtonStyle: ButtonStyle(
         minimumSize: WidgetStatePropertyAll(const Size(0, 32)),
         backgroundBuilder: (context, states, child) {
