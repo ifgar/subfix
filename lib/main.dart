@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:subfix/home_screen.dart';
+import 'package:subfix/screens/home_screen.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
