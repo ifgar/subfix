@@ -73,20 +73,25 @@ Future<void> sync(String path, double offset) async {
   final file = File(path);
   if (!await file.exists()) return;
 
+  // Read file with encoding detection
   final bytes = await file.readAsBytes();
   final isUtf = await isUtf8(path);
-
   final content = isUtf
       ? utf8.decode(bytes)
       : latin1.decode(bytes, allowInvalid: true);
 
+  // Split into lines
   final lines = content.split('\n');
 
   final buffer = StringBuffer();
   final off = processOffset(offset);
 
-  for (final line in lines) {
+  for (int i = 0; i < lines.length; i++) {
+    final line = lines[i];
+    final isLast = i == lines.length - 1;
+
     if (line.contains("-->")) {
+      // Parse timing line
       final partes = line.split(" --> ");
 
       final start = partes[0];
@@ -104,6 +109,7 @@ Future<void> sync(String path, double offset) async {
       final sE = int.parse(endTokens[2]);
       final msE = int.parse(endTokens[3]);
 
+      // Apply offset
       final startFinal = formatTime(
         hS + off.h,
         mS + off.m,
@@ -118,12 +124,19 @@ Future<void> sync(String path, double offset) async {
         msE + off.ms,
       );
 
+      // Write adjusted timing line
       buffer.writeln("$startFinal --> $endFinal");
     } else {
+      // Skip only the final trailing blank line
+      if (isLast && line.trim().isEmpty) {
+        continue;
+      }
+      // Preserve all other lines (including block separators)
       buffer.writeln(line);
     }
   }
 
+  // Always save output in UTF-8 to maximize compatibility with external tools (e.g., mkvmerge)
   await saveSrt(path, buffer.toString(), offset);
 }
 
