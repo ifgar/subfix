@@ -13,6 +13,7 @@ dependencies:
   file_selector: ^1.1.0
   window_size: ^0.1.0
   window_manager: ^0.5.1
+  menu_bar: ^0.5.3
 
 dev_dependencies:
   flutter_test:
