@@ -105,6 +105,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    OutlinedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedFilePath = "/...";
+                          selectedFileName = "";
+                          selectedOffset = 0.0;
+                          isUtf = true;
+                        });
+                      },
+                      child: Text("Clear", style: TextStyles.bodyText),
+                    ),
+                    SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
                         sync(selectedFilePath, selectedOffset);
