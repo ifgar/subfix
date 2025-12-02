@@ -90,13 +90,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   onDecrease: () {
                     setState(() {
-                      selectedOffset -= 0.1;
+                      selectedOffset = double.parse(
+                        (selectedOffset - 0.1).toStringAsFixed(2),
+                      );
                       offsetController.text = selectedOffset.toStringAsFixed(2);
                     });
                   },
                   onIncrease: () {
                     setState(() {
-                      selectedOffset += 0.1;
+                      selectedOffset = double.parse(
+                        (selectedOffset + 0.1).toStringAsFixed(2),
+                      );
                       offsetController.text = selectedOffset.toStringAsFixed(2);
                     });
                   },
