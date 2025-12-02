@@ -25,4 +25,10 @@ class TextStyles {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+
+  static const TextStyle altButtonText = TextStyle(
+    color: AppColors.accentBlue,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
 }
