@@ -111,10 +111,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           selectedFilePath = "/...";
                           selectedFileName = "";
                           selectedOffset = 0.0;
+                          offsetController.text = "";
                           isUtf = true;
                         });
                       },
-                      child: Text("Clear", style: TextStyles.bodyText),
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(8),
+                        ),
+                        side: BorderSide(color: AppColors.accentBlue),
+                      ),
+                      child: Text("Clear", style: TextStyles.altButtonText),
                     ),
                     SizedBox(width: 8),
                     ElevatedButton(
