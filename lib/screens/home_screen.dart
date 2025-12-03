@@ -2,6 +2,7 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:subfix/components/custom_menu_bar.dart';
 import 'package:subfix/components/file_selector.dart';
+import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/encoding.dart';
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedFilePath = "/...";
   String selectedFileName = "";
   double selectedOffset = 0.0;
-  bool isUtf = true;
+  bool? isUtf;
 
   final offsetController = TextEditingController();
 
@@ -57,25 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   },
                 ),
-                SizedBox(height: (isUtf == true) ? 21 : 4),
-                if (isUtf == false)
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.warning_rounded,
-                        size: 16,
-                        color: Colors.amber,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: Text(
-                          "File is not UTF-8. Output will be converted.",
-                          style: TextStyles.bodyComment,
-                        ),
-                      ),
-                    ],
-                  ),
-                SizedBox(height: 8),
+                SizedBox(height: 4),
+                FileSelectorComment(isUtf: isUtf),
+                SizedBox(height: 16),
                 OffsetSelector(
                   offsetController: offsetController,
                   onChanged: (value) {
@@ -116,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           selectedFileName = "";
                           selectedOffset = 0.0;
                           offsetController.text = "";
-                          isUtf = true;
+                          isUtf = null;
                         });
                       },
                       style: OutlinedButton.styleFrom(
