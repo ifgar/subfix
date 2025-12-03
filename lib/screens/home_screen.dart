@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 FileSelector(
                   selectedFileName: selectedFileName,
                   onPressed: () async {
-                    const type = XTypeGroup(label: "Subs", extensions: ["srt", "sub"]);
+                    const type = XTypeGroup(label: ".srt, .sub", extensions: ["srt", "sub"]);
                     final file = await openFile(acceptedTypeGroups: [type]);
                     if (file == null) return;
 
