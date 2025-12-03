@@ -23,6 +23,22 @@ class OffsetSelector extends StatelessWidget {
         Text("Offset (s):", style: TextStyles.bodyText),
         SizedBox(width: 8),
         SizedBox(
+          height: 28,
+          width: 28,
+          child: FloatingActionButton(
+            onPressed: onDecrease,
+            mini: true,
+            backgroundColor: AppColors.backgroundDark,
+            shape: CircleBorder(),
+            child: Icon(
+              Icons.remove_circle,
+              size: 28,
+              color: AppColors.accentBlue,
+            ),
+          ),
+        ),
+        SizedBox(width: 4),
+        SizedBox(
           width: 56,
           height: 32,
           child: TextField(
@@ -46,22 +62,7 @@ class OffsetSelector extends StatelessWidget {
           ),
         ),
         SizedBox(width: 4),
-        SizedBox(
-          height: 28,
-          width: 28,
-          child: FloatingActionButton(
-            onPressed: onDecrease,
-            mini: true,
-            backgroundColor: AppColors.backgroundDark,
-            shape: CircleBorder(),
-            child: Icon(
-              Icons.remove_circle,
-              size: 28,
-              color: AppColors.accentBlue,
-            ),
-          ),
-        ),
-        SizedBox(width: 4),
+        
         SizedBox(
           height: 28,
           width: 28,
