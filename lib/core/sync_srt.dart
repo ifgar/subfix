@@ -69,7 +69,7 @@ String formatTime(int h, int m, int s, int ms) {
       "${ms.toString().padLeft(3, '0')}";
 }
 
-Future<void> sync(String path, double offset) async {
+Future<void> syncSrt(String path, double offset) async {
   final file = File(path);
   if (!await file.exists()) return;
 

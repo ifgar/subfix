@@ -6,7 +6,7 @@ import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/encoding.dart';
-import 'package:subfix/core/sync_subs.dart';
+import 'package:subfix/core/sync_srt.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String selectedFilePath = "/...";
   String selectedFileName = "";
+  String selectedFileExtension = "";
   double selectedOffset = 0.0;
   bool? isUtf;
 
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     setState(() {
                       selectedFilePath = file.path;
                       selectedFileName = file.name;
+                      selectedFileExtension = selectedFileName.split(".").last;
                       isUtf = ok;
                     });
                   },
@@ -99,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {
                           selectedFilePath = "/...";
                           selectedFileName = "";
+                          selectedFileExtension = "";
                           selectedOffset = 0.0;
                           offsetController.text = "";
                           isUtf = null;
@@ -115,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
-                        sync(selectedFilePath, selectedOffset);
+                        syncSrt(selectedFilePath, selectedOffset);
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
