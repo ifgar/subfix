@@ -33,7 +33,7 @@ class OffsetSelector extends StatelessWidget {
             child: Icon(
               Icons.remove_circle,
               size: 28,
-              color: AppColors.accentBlue,
+              color: AppColors.secondary,
             ),
           ),
         ),
@@ -74,7 +74,7 @@ class OffsetSelector extends StatelessWidget {
             child: Icon(
               Icons.add_circle,
               size: 28,
-              color: AppColors.accentBlue,
+              color: AppColors.secondary,
             ),
           ),
         ),
