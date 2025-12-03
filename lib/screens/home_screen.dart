@@ -7,6 +7,7 @@ import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/encoding.dart';
 import 'package:subfix/core/sync_srt.dart';
+import 'package:subfix/core/sync_sub.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 FileSelector(
                   selectedFileName: selectedFileName,
                   onPressed: () async {
-                    const type = XTypeGroup(label: 'SRT', extensions: ['srt']);
+                    const type = XTypeGroup(label: "Subs", extensions: ["srt", "sub"]);
                     final file = await openFile(acceptedTypeGroups: [type]);
                     if (file == null) return;
 
@@ -118,7 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
-                        syncSrt(selectedFilePath, selectedOffset);
+                        if(selectedFileExtension.toLowerCase() == "srt") {
+                          syncSrt(selectedFilePath, selectedOffset);
+                        } else if (selectedFileExtension.toLowerCase() == "sub"){
+                          syncSub(selectedFilePath, selectedOffset);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
