@@ -53,10 +53,19 @@ Future<void> syncAss(String path, double offset) async {
   final lines = content.split("\n");
   final buffer = StringBuffer();
 
-  for (final line in lines) {
+  for (int i = 0; i < lines.length; i++) {
+    final line = lines[i];
+    final isLast = i == lines.length -1;
+
     if (line.startsWith("Dialogue:") || line.startsWith("Comment:")){
       buffer.writeln(shiftDialogueLine(line, offset));
+      
     } else {
+      // Skip only the final trailing blank line
+      if (isLast && line.trim().isEmpty) {
+        continue;
+      }
+      // Preserve all other lines (including block separators)
       buffer.writeln(line);
     }
   }
