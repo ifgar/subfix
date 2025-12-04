@@ -1,8 +1,8 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
-import 'package:subfix/components/custom_menu_bar.dart';
 import 'package:subfix/components/file_selector.dart';
 import 'package:subfix/components/file_selector_comment.dart';
+import 'package:subfix/components/main_menu_bar.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/encoding.dart';
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomMenuBar(
+    return MainMenuBar(
       child: Scaffold(
         backgroundColor: AppColors.backgroundDark,
         body: Center(
