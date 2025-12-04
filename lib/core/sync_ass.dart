@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:subfix/core/encoding.dart';
-import 'package:subfix/core/offset.dart';
+import 'package:subfix/core/srt_offset.dart';
 
-Offset processOffset(double offset) {
+SrtOffset processOffset(double offset) {
 
   int h = (offset / 3600).toInt();
   int m = ((offset % 3600) / 60).toInt();
   double s = offset % 60;
 
-  return Offset(h, m, s);
+  return SrtOffset(h, m, s);
 }
 
 String formatTime(int h, int m, int s, int ms) {
