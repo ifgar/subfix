@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   selectedFileName: selectedFileName,
                   onPressed: () async {
                     const type = XTypeGroup(
-                      label: ".srt/ .sub / .ass",
+                      label: ".srt, .sub, .ass",
                       extensions: ["srt", "sub", "ass"],
                     );
                     final file = await openFile(acceptedTypeGroups: [type]);

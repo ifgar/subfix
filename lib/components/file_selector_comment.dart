@@ -18,7 +18,7 @@ class FileSelectorComment extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
-                  "Supported formats: .srt",
+                  "Supported formats: .srt, .sub, .ass",
                   style: TextStyles.bodyComment,
                 ),
               ),
