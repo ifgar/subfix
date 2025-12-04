@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:subfix/core/ass_offset.dart';
 import 'package:subfix/core/encoding.dart';
 
 // Parse timing
@@ -46,9 +45,10 @@ Future<void> syncAss(String path, double offset) async {
 
   final bytes = await file.readAsBytes();
   final isUtf = await isUtf8(path);
-  final content = isUtf
+  final content = (isUtf
       ? utf8.decode(bytes)
-      : latin1.decode(bytes, allowInvalid: true);
+      : latin1.decode(bytes, allowInvalid: true))
+      .replaceAll("\r", "");
 
   final lines = content.split("\n");
   final buffer = StringBuffer();
@@ -57,7 +57,7 @@ Future<void> syncAss(String path, double offset) async {
     if (line.startsWith("Dialogue:") || line.startsWith("Comment:")){
       buffer.writeln(shiftDialogueLine(line, offset));
     } else {
-      buffer.write(line);
+      buffer.writeln(line);
     }
   }
 
