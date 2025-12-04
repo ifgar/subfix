@@ -6,6 +6,7 @@ import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/encoding.dart';
+import 'package:subfix/core/sync_ass.dart';
 import 'package:subfix/core/sync_srt.dart';
 import 'package:subfix/core/sync_sub.dart';
 import 'package:subfix/core/text_styles.dart';
@@ -47,7 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 FileSelector(
                   selectedFileName: selectedFileName,
                   onPressed: () async {
-                    const type = XTypeGroup(label: ".srt, .sub", extensions: ["srt", "sub"]);
+                    const type = XTypeGroup(
+                      label: ".srt/ .sub / .ass",
+                      extensions: ["srt", "sub", "ass"],
+                    );
                     final file = await openFile(acceptedTypeGroups: [type]);
                     if (file == null) return;
 
@@ -119,10 +123,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
-                        if(selectedFileExtension.toLowerCase() == "srt") {
+                        if (selectedFileExtension.toLowerCase() == "srt") {
                           syncSrt(selectedFilePath, selectedOffset);
-                        } else if (selectedFileExtension.toLowerCase() == "sub"){
+                        } else if (selectedFileExtension.toLowerCase() ==
+                            "sub") {
                           syncSub(selectedFilePath, selectedOffset);
+                        } else if (selectedFileExtension.toLowerCase() ==
+                            "ass") {
+                          syncAss(selectedFilePath, selectedOffset);
                         }
                       },
                       style: ElevatedButton.styleFrom(
