@@ -45,7 +45,12 @@ Future<void> syncSub(String path, double offset) async {
       final subText = endSplit[1];
 
       // Apply offset
-      final startFinal = startMs + off;
+      final startFinal;
+      if(startMs + off > 0){
+        startFinal = startMs + off;
+      } else {
+        startFinal = 0;
+      }
       final endFinal = endMs + off;
 
       // Write adjusted timing line
