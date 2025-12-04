@@ -45,7 +45,7 @@ Future<void> syncSub(String path, double offset) async {
       final subText = endSplit[1];
 
       // Apply offset
-      final startFinal;
+      final int startFinal;
       if(startMs + off > 0){
         startFinal = startMs + off;
       } else {
