@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:subfix/core/encoding.dart';
 
-int processOffset(double offset){
+int processSubOffset(double offset){
   double ms = offset * 1000;
 
   return ms.toInt();
@@ -25,7 +25,7 @@ Future<void> syncSub(String path, double offset) async {
   final lines = content.split('\n');
 
   final buffer = StringBuffer();
-  final off = processOffset(offset);
+  final off = processSubOffset(offset);
 
   for (int i = 0; i < lines.length; i++) {
     final line = lines[i];

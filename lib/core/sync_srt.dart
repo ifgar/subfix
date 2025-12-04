@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:subfix/core/encoding.dart';
 import 'package:subfix/core/offset.dart';
 
-Offset processOffset(double offset) {
+Offset processSrtOffset(double offset) {
   int entero = offset.toInt();
   int ms = ((offset - entero) * 1000).toInt();
 
@@ -15,7 +15,7 @@ Offset processOffset(double offset) {
   return Offset(h, m, s, ms);
 }
 
-String formatTime(int h, int m, int s, int ms) {
+String formatSrtTime(int h, int m, int s, int ms) {
   // ms
   if (ms < 0) {
     int borrow = ((ms.abs() + 999) / 1000).toInt();
@@ -84,7 +84,7 @@ Future<void> syncSrt(String path, double offset) async {
   final lines = content.split('\n');
 
   final buffer = StringBuffer();
-  final off = processOffset(offset);
+  final off = processSrtOffset(offset);
 
   for (int i = 0; i < lines.length; i++) {
     final line = lines[i];
@@ -110,14 +110,14 @@ Future<void> syncSrt(String path, double offset) async {
       final msE = int.parse(endTokens[3]);
 
       // Apply offset
-      final startFinal = formatTime(
+      final startFinal = formatSrtTime(
         hS + off.h,
         mS + off.m,
         sS + off.s,
         msS + off.ms,
       );
 
-      final endFinal = formatTime(
+      final endFinal = formatSrtTime(
         hE + off.h,
         mE + off.m,
         sE + off.s,

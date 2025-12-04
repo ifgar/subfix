@@ -5,14 +5,12 @@ import 'package:subfix/core/encoding.dart';
 import 'package:subfix/core/offset.dart';
 
 Offset processOffset(double offset) {
-  int entero = offset.toInt();
-  int ms = ((offset - entero) * 1000).toInt();
 
-  int h = (entero / 3600).toInt();
-  int m = ((entero % 3600) / 60).toInt();
-  int s = entero % 60;
+  int h = (offset / 3600).toInt();
+  int m = ((offset % 3600) / 60).toInt();
+  double s = offset % 60;
 
-  return Offset(h, m, s, ms);
+  return Offset(h, m, s);
 }
 
 String formatTime(int h, int m, int s, int ms) {
