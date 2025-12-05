@@ -36,7 +36,7 @@ class FileSelector extends StatelessWidget {
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(0, 40),
-            backgroundColor: AppColors.accentBlue,
+            backgroundColor: AppColors.accent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusGeometry.circular(8),
             ),

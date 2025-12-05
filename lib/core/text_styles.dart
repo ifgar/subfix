@@ -27,7 +27,7 @@ class TextStyles {
   );
 
   static const TextStyle altButtonText = TextStyle(
-    color: AppColors.accentBlue,
+    color: AppColors.accent,
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );

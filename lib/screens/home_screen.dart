@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),
-                        side: BorderSide(color: AppColors.accentBlue),
+                        side: BorderSide(color: AppColors.accent),
                       ),
                       child: Text("Clear", style: TextStyles.altButtonText),
                     ),
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
-                        backgroundColor: AppColors.accentBlue,
+                        backgroundColor: AppColors.accent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),

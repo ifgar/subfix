@@ -43,7 +43,7 @@ class OffsetSelector extends StatelessWidget {
           height: 32,
           child: TextField(
             controller: offsetController,
-            cursorColor: AppColors.accentBlue,
+            cursorColor: AppColors.accent,
             style: TextStyles.bodyText,
             onChanged: onChanged,
             decoration: InputDecoration(

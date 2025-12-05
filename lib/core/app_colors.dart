@@ -7,7 +7,7 @@ class AppColors {
   static const Color tertiary = Color(0xFF565F89);
 
   // Accents
-  static const Color accentBlue = Color(0xFF7DCFFF);
+  static const Color accent = Color(0xFF7DCFFF);
   static const Color accentRed = Color(0xFFC53B53);
 
   // Backgrounds
