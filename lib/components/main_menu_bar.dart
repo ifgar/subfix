@@ -1,14 +1,24 @@
-// AI-generated implementation, subject to review and refinement.
+// Partly AI-generated implementation, subject to review and refinement.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class MainMenuBar extends StatefulWidget {
+  final Map<String, AppTheme> themes;
+  final String activeThemeName;
+  final void Function(String name) onThemeSelected;
   final Widget child;
 
-  const MainMenuBar({super.key, required this.child});
+  const MainMenuBar({
+    super.key,
+    required this.child,
+    required this.themes,
+    required this.activeThemeName,
+    required this.onThemeSelected,
+  });
 
   @override
   State<MainMenuBar> createState() => _MainMenuBarState();

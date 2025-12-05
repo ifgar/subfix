@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedFileExtension = "";
   double selectedOffset = 0.0;
   bool? isUtf;
+  String activeThemeName = "default";
   AppTheme activeTheme = defaultTheme;
   Map<String, AppTheme> themes = {"default": defaultTheme};
 
@@ -48,6 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MainMenuBar(
+      themes: themes,
+      activeThemeName: activeThemeName,
+      onThemeSelected: (value){},
       child: Scaffold(
         backgroundColor: AppColors.backgroundDark,
         body: Center(
