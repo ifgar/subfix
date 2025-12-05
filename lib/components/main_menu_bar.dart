@@ -2,7 +2,6 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
@@ -10,6 +9,7 @@ class MainMenuBar extends StatefulWidget {
   final Map<String, AppTheme> themes;
   final String activeThemeName;
   final void Function(String name) onThemeSelected;
+  final AppTheme activeTheme;
   final Widget child;
 
   const MainMenuBar({
@@ -18,6 +18,7 @@ class MainMenuBar extends StatefulWidget {
     required this.themes,
     required this.activeThemeName,
     required this.onThemeSelected,
+    required this.activeTheme,
   });
 
   @override
@@ -89,6 +90,7 @@ class _MainMenuBarState extends State<MainMenuBar> {
           themesController: themesController,
           themes: widget.themes,
           activeThemeName: widget.activeThemeName,
+          activeTheme: widget.activeTheme,
           onThemeSelected: widget.onThemeSelected,
         ),
         Expanded(child: widget.child),
@@ -104,6 +106,7 @@ class _MenuRow extends StatelessWidget {
 
   final Map<String, AppTheme> themes;
   final String activeThemeName;
+  final AppTheme activeTheme;
   final void Function(String name) onThemeSelected;
 
   final MenuController fileController;
@@ -120,22 +123,24 @@ class _MenuRow extends StatelessWidget {
     required this.themes,
     required this.activeThemeName,
     required this.onThemeSelected,
+    required this.activeTheme,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 32,
-      color: AppColors.backgroundLight,
+      color: activeTheme.backgroundLight,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          Icon(Icons.abc, color: AppColors.primary),
+          Icon(Icons.abc, color: activeTheme.primary),
 
           _MenuButton(
             id: 'file',
             label: 'File',
             controller: fileController,
+            activeTheme: activeTheme,
             isOpen: openMenuId == 'file',
             isAnyOpen: openMenuId != null,
             onOpen: () => onOpenMenu('file', fileController),
@@ -154,6 +159,12 @@ class _MenuRow extends StatelessWidget {
           _MenuButton(
             id: "themes",
             label: "Themes",
+            controller: themesController,
+            activeTheme: activeTheme,
+            isOpen: openMenuId == "themes",
+            isAnyOpen: openMenuId != null,
+            onOpen: () => onOpenMenu("themes", themesController),
+            onClose: onCloseMenu,
             items: themes.keys.map((name) {
               final isActive = name == activeThemeName;
 
@@ -162,23 +173,19 @@ class _MenuRow extends StatelessWidget {
                 child: Row(
                   children: [
                     if (isActive)
-                      Icon(Icons.check, size: 14, color: AppColors.primary),
+                      Icon(Icons.check, size: 14, color: activeTheme.primary),
                     if (isActive) SizedBox(width: 6),
                     Text(name, style: TextStyles.bodyText),
                   ],
                 ),
               );
-            }).toList(),
-            controller: themesController,
-            isOpen: openMenuId == "themes",
-            isAnyOpen: openMenuId != null,
-            onOpen: () => onOpenMenu("themes", themesController),
-            onClose: onCloseMenu,
+            }).toList()
           ),
           _MenuButton(
             id: 'help',
             label: 'Help',
             controller: helpController,
+            activeTheme: activeTheme,
             isOpen: openMenuId == 'help',
             isAnyOpen: openMenuId != null,
             onOpen: () => onOpenMenu('help', helpController),
@@ -202,6 +209,8 @@ class _MenuButton extends StatelessWidget {
   final List<Widget> items;
   final MenuController controller;
 
+  final AppTheme activeTheme;
+
   final bool isOpen;
   final bool isAnyOpen;
   final VoidCallback onOpen;
@@ -216,6 +225,7 @@ class _MenuButton extends StatelessWidget {
     required this.isAnyOpen,
     required this.onOpen,
     required this.onClose,
+    required this.activeTheme,
   });
 
   @override
@@ -226,12 +236,12 @@ class _MenuButton extends StatelessWidget {
       menuChildren: items,
       onClose: () => onClose(),
       style: MenuStyle(
-        backgroundColor: WidgetStatePropertyAll(AppColors.backgroundLight),
+        backgroundColor: WidgetStatePropertyAll(activeTheme.backgroundLight),
         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: AppColors.tertiary),
+            side: BorderSide(color: activeTheme.tertiary),
           ),
         ),
         elevation: const WidgetStatePropertyAll(4),
@@ -250,10 +260,10 @@ class _MenuButton extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
-              splashColor: AppColors.tertiary,
-              hoverColor: active ? AppColors.tertiary : AppColors.tertiary,
-              highlightColor: active ? AppColors.tertiary : Colors.transparent,
-              focusColor: active ? AppColors.tertiary : Colors.transparent,
+              splashColor: activeTheme.tertiary,
+              hoverColor: active ? activeTheme.tertiary : activeTheme.tertiary,
+              highlightColor: active ? activeTheme.tertiary : Colors.transparent,
+              focusColor: active ? activeTheme.tertiary : Colors.transparent,
               onTap: () {
                 if (active) {
                   onClose();
@@ -264,7 +274,7 @@ class _MenuButton extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: active ? AppColors.tertiary : Colors.transparent,
+                  color: active ? activeTheme.tertiary : Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 8),
