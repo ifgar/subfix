@@ -24,7 +24,7 @@ class FileSelectorComment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "Supported formats: .srt, .sub, .ass",
-                  style: TextStyles.bodyComment,
+                  style: TextStyles.bodyComment(activeTheme),
                 ),
               ),
             ],
@@ -37,7 +37,7 @@ class FileSelectorComment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "File is ready to be converted",
-                  style: TextStyles.bodyComment,
+                  style: TextStyles.bodyComment(activeTheme),
                 ),
               ),
             ],
@@ -50,7 +50,7 @@ class FileSelectorComment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "File is not UTF-8. Output will be converted.",
-                  style: TextStyles.bodyComment,
+                  style: TextStyles.bodyComment(activeTheme),
                 ),
               ),
             ],

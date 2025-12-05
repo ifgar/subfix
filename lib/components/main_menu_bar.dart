@@ -147,11 +147,11 @@ class _MenuRow extends StatelessWidget {
             onClose: onCloseMenu,
             items: [
               MenuItemButton(
-                child: const Text('Save', style: TextStyles.bodyText),
+                child: Text('Save', style: TextStyles.bodyText(activeTheme)),
                 onPressed: () {},
               ),
               MenuItemButton(
-                child: const Text('Exit', style: TextStyles.bodyText),
+                child: Text('Exit', style: TextStyles.bodyText(activeTheme)),
                 onPressed: () {},
               ),
             ],
@@ -175,7 +175,7 @@ class _MenuRow extends StatelessWidget {
                     if (isActive)
                       Icon(Icons.check, size: 14, color: activeTheme.primary),
                     if (isActive) SizedBox(width: 6),
-                    Text(name, style: TextStyles.bodyText),
+                    Text(name, style: TextStyles.bodyText(activeTheme)),
                   ],
                 ),
               );
@@ -192,7 +192,7 @@ class _MenuRow extends StatelessWidget {
             onClose: onCloseMenu,
             items: [
               MenuItemButton(
-                child: const Text('About', style: TextStyles.bodyText),
+                child: Text('About', style: TextStyles.bodyText(activeTheme)),
                 onPressed: () {},
               ),
             ],
@@ -278,7 +278,7 @@ class _MenuButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(label, style: TextStyles.bodyText),
+                child: Text(label, style: TextStyles.bodyText(activeTheme)),
               ),
             ),
           ),

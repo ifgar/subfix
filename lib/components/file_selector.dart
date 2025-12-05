@@ -30,7 +30,7 @@ class FileSelector extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 8),
-            child: Text(selectedFileName, style: TextStyles.bodyText),
+            child: Text(selectedFileName, style: TextStyles.bodyText(activeTheme)),
           ),
         ),
         SizedBox(width: 8),
@@ -43,7 +43,7 @@ class FileSelector extends StatelessWidget {
               borderRadius: BorderRadiusGeometry.circular(8),
             ),
           ),
-          child: Text("Select", style: TextStyles.buttonText),
+          child: Text("Select", style: TextStyles.buttonText(activeTheme)),
         ),
       ],
     );

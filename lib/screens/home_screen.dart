@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16),
                 Text(
                   "Select a file:",
-                  style: TextStyles.bodyText,
+                  style: TextStyles.bodyText(activeTheme),
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(height: 4),
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         side: BorderSide(color: activeTheme.accent),
                       ),
-                      child: Text("Clear", style: TextStyles.altButtonText),
+                      child: Text("Clear", style: TextStyles.altButtonText(activeTheme)),
                     ),
                     SizedBox(width: 8),
                     ElevatedButton(
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),
                       ),
-                      child: Text("Apply", style: TextStyles.buttonText),
+                      child: Text("Apply", style: TextStyles.buttonText(activeTheme)),
                     ),
                   ],
                 ),

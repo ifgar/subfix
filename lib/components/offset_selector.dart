@@ -22,7 +22,7 @@ class OffsetSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text("Offset (s):", style: TextStyles.bodyText),
+        Text("Offset (s):", style: TextStyles.bodyText(activeTheme)),
         SizedBox(width: 8),
         SizedBox(
           height: 28,
@@ -46,7 +46,7 @@ class OffsetSelector extends StatelessWidget {
           child: TextField(
             controller: offsetController,
             cursorColor: activeTheme.accent,
-            style: TextStyles.bodyText,
+            style: TextStyles.bodyText(activeTheme),
             onChanged: onChanged,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 2, right: 2),
