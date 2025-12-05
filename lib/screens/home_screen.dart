@@ -98,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 16),
                 OffsetSelector(
                   offsetController: offsetController,
+                  activeTheme: activeTheme,
                   onChanged: (value) {
                     final v = value.replaceAll(",", ".");
 

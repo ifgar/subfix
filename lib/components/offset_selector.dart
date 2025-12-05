@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class OffsetSelector extends StatelessWidget {
@@ -7,6 +7,7 @@ class OffsetSelector extends StatelessWidget {
   final Function(String) onChanged;
   final VoidCallback onDecrease;
   final VoidCallback onIncrease;
+  final AppTheme activeTheme;
 
   const OffsetSelector({
     super.key,
@@ -14,6 +15,7 @@ class OffsetSelector extends StatelessWidget {
     required this.onChanged,
     required this.onDecrease,
     required this.onIncrease,
+    required this.activeTheme,
   });
 
   @override
@@ -28,12 +30,12 @@ class OffsetSelector extends StatelessWidget {
           child: FloatingActionButton(
             onPressed: onDecrease,
             mini: true,
-            backgroundColor: AppColors.backgroundDark,
+            backgroundColor: activeTheme.backgroundDark,
             shape: CircleBorder(),
             child: Icon(
               Icons.remove_circle,
               size: 28,
-              color: AppColors.secondary,
+              color: activeTheme.secondary,
             ),
           ),
         ),
@@ -43,39 +45,35 @@ class OffsetSelector extends StatelessWidget {
           height: 32,
           child: TextField(
             controller: offsetController,
-            cursorColor: AppColors.accent,
+            cursorColor: activeTheme.accent,
             style: TextStyles.bodyText,
             onChanged: onChanged,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 2, right: 2),
               filled: true,
-              fillColor: AppColors.backgroundLight,
+              fillColor: activeTheme.backgroundLight,
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.secondary),
+                borderSide: BorderSide(color: activeTheme.secondary),
                 borderRadius: BorderRadius.circular(8),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.secondary),
+                borderSide: BorderSide(color: activeTheme.secondary),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),
         ),
         SizedBox(width: 4),
-        
+
         SizedBox(
           height: 28,
           width: 28,
           child: FloatingActionButton(
             onPressed: onIncrease,
             mini: true,
-            backgroundColor: AppColors.backgroundDark,
+            backgroundColor: activeTheme.backgroundDark,
             shape: CircleBorder(),
-            child: Icon(
-              Icons.add_circle,
-              size: 28,
-              color: AppColors.secondary,
-            ),
+            child: Icon(Icons.add_circle, size: 28, color: activeTheme.secondary),
           ),
         ),
       ],
