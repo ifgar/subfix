@@ -30,7 +30,7 @@ class OffsetSelector extends StatelessWidget {
           child: FloatingActionButton(
             onPressed: onDecrease,
             mini: true,
-            backgroundColor: activeTheme.backgroundDark,
+            backgroundColor: activeTheme.backgroundPrimary,
             shape: CircleBorder(),
             child: Icon(
               Icons.remove_circle,
@@ -51,7 +51,7 @@ class OffsetSelector extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 2, right: 2),
               filled: true,
-              fillColor: activeTheme.backgroundLight,
+              fillColor: activeTheme.backgroundSecondary,
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: activeTheme.secondary),
                 borderRadius: BorderRadius.circular(8),
@@ -71,7 +71,7 @@ class OffsetSelector extends StatelessWidget {
           child: FloatingActionButton(
             onPressed: onIncrease,
             mini: true,
-            backgroundColor: activeTheme.backgroundDark,
+            backgroundColor: activeTheme.backgroundPrimary,
             shape: CircleBorder(),
             child: Icon(Icons.add_circle, size: 28, color: activeTheme.secondary),
           ),

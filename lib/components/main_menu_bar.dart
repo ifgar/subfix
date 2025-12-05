@@ -130,7 +130,7 @@ class _MenuRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 32,
-      color: activeTheme.backgroundLight,
+      color: activeTheme.backgroundSecondary,
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
@@ -236,7 +236,7 @@ class _MenuButton extends StatelessWidget {
       menuChildren: items,
       onClose: () => onClose(),
       style: MenuStyle(
-        backgroundColor: WidgetStatePropertyAll(activeTheme.backgroundLight),
+        backgroundColor: WidgetStatePropertyAll(activeTheme.backgroundSecondary),
         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(

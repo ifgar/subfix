@@ -5,16 +5,16 @@ class AppTheme {
   final Color secondary;
   final Color tertiary;
   final Color accent;
-  final Color backgroundDark;
-  final Color backgroundLight;
+  final Color backgroundPrimary;
+  final Color backgroundSecondary;
 
   AppTheme({
     required this.primary,
     required this.secondary,
     required this.tertiary,
     required this.accent,
-    required this.backgroundDark,
-    required this.backgroundLight,
+    required this.backgroundPrimary,
+    required this.backgroundSecondary,
   });
 
   factory AppTheme.fromMap(Map<String, String> theme) {
@@ -24,8 +24,8 @@ class AppTheme {
       secondary: parse(theme['secondary']!),
       tertiary: parse(theme['tertiary']!),
       accent: parse(theme['accent']!),
-      backgroundDark: parse(theme['backgroundDark']!),
-      backgroundLight: parse(theme['backgroundLight']!),
+      backgroundPrimary: parse(theme['backgroundPrimary']!),
+      backgroundSecondary: parse(theme['backgroundSecondary']!),
     );
   }
 }

@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       },
       child: Scaffold(
-        backgroundColor: activeTheme.backgroundDark,
+        backgroundColor: activeTheme.backgroundPrimary,
         body: Center(
           child: SizedBox(
             width: 452,

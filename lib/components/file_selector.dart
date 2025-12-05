@@ -24,7 +24,7 @@ class FileSelector extends StatelessWidget {
           height: 32,
           width: 350,
           decoration: BoxDecoration(
-            color: activeTheme.backgroundLight,
+            color: activeTheme.backgroundSecondary,
             border: Border.all(color: activeTheme.secondary),
             borderRadius: BorderRadius.circular(8),
           ),

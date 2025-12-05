@@ -28,7 +28,7 @@ class TextStyles {
 
   static TextStyle buttonText(AppTheme theme) {
     return TextStyle(
-      color: theme.backgroundDark,
+      color: theme.backgroundPrimary,
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
