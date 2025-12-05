@@ -20,33 +20,32 @@ class _MainMenuBarState extends State<MainMenuBar> {
 
   final MenuController fileController = MenuController();
   final MenuController helpController = MenuController();
+  final MenuController themesController = MenuController();
 
   PointerDataPacketCallback? _oldHandler;
 
-@override
-void initState() {
-  super.initState();
+  @override
+  void initState() {
+    super.initState();
 
-  _oldHandler = PlatformDispatcher.instance.onPointerDataPacket;
+    _oldHandler = PlatformDispatcher.instance.onPointerDataPacket;
 
-  PlatformDispatcher.instance.onPointerDataPacket = (packet) {
-    for (final data in packet.data) {
-      if (data.change == PointerChange.remove) {
-        _closeMenu();
+    PlatformDispatcher.instance.onPointerDataPacket = (packet) {
+      for (final data in packet.data) {
+        if (data.change == PointerChange.remove) {
+          _closeMenu();
+        }
       }
-    }
 
-    _oldHandler?.call(packet);
-  };
-}
+      _oldHandler?.call(packet);
+    };
+  }
 
-@override
-void dispose() {
-
-  PlatformDispatcher.instance.onPointerDataPacket = _oldHandler;
-  super.dispose();
-}
-
+  @override
+  void dispose() {
+    PlatformDispatcher.instance.onPointerDataPacket = _oldHandler;
+    super.dispose();
+  }
 
   void _openMenu(String id, MenuController controller) {
     if (_openController != null && _openController != controller) {
@@ -77,6 +76,7 @@ void dispose() {
           onCloseMenu: _closeMenu,
           fileController: fileController,
           helpController: helpController,
+          themesController: themesController,
         ),
         Expanded(child: widget.child),
       ],
@@ -91,6 +91,7 @@ class _MenuRow extends StatelessWidget {
 
   final MenuController fileController;
   final MenuController helpController;
+  final MenuController themesController;
 
   const _MenuRow({
     required this.openMenuId,
@@ -98,6 +99,7 @@ class _MenuRow extends StatelessWidget {
     required this.onCloseMenu,
     required this.fileController,
     required this.helpController,
+    required this.themesController,
   });
 
   @override
@@ -129,7 +131,16 @@ class _MenuRow extends StatelessWidget {
               ),
             ],
           ),
-
+          _MenuButton(
+            id: "themes",
+            label: "Themes",
+            items: [],
+            controller: themesController,
+            isOpen: openMenuId == "themes",
+            isAnyOpen: openMenuId != null,
+            onOpen: () => onOpenMenu("themes", themesController),
+            onClose: onCloseMenu,
+          ),
           _MenuButton(
             id: 'help',
             label: 'Help',
