@@ -32,6 +32,20 @@ class _HomeScreenState extends State<HomeScreen> {
   final offsetController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _initThemes();
+  }
+
+  Future<void> _initThemes() async {
+    final loaded = await loadThemes("themes.conf");
+    setState(() {
+      themes = loaded;
+      activeTheme = themes["default"] ?? defaultTheme;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MainMenuBar(
       child: Scaffold(
