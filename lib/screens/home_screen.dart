@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       },
       child: Scaffold(
-        backgroundColor: AppColors.backgroundDark,
+        backgroundColor: activeTheme.backgroundDark,
         body: Center(
           child: SizedBox(
             width: 452,
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),
-                        side: BorderSide(color: AppColors.accent),
+                        side: BorderSide(color: activeTheme.accent),
                       ),
                       child: Text("Clear", style: TextStyles.altButtonText),
                     ),
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
-                        backgroundColor: AppColors.accent,
+                        backgroundColor: activeTheme.accent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),
