@@ -17,15 +17,15 @@ class AppTheme {
     required this.backgroundLight,
   });
 
-  factory AppTheme.fromMap(Map<String, String> map) {
+  factory AppTheme.fromMap(Map<String, String> theme) {
     Color parse(String hex) => Color(int.parse(hex.replaceFirst('#', '0xff')));
     return AppTheme(
-      primary: parse(map['primary']!),
-      secondary: parse(map['secondary']!),
-      tertiary: parse(map['tertiary']!),
-      accent: parse(map['accent']!),
-      backgroundDark: parse(map['backgroundDark']!),
-      backgroundLight: parse(map['backgroundLight']!),
+      primary: parse(theme['primary']!),
+      secondary: parse(theme['secondary']!),
+      tertiary: parse(theme['tertiary']!),
+      accent: parse(theme['accent']!),
+      backgroundDark: parse(theme['backgroundDark']!),
+      backgroundLight: parse(theme['backgroundLight']!),
     );
   }
 }
