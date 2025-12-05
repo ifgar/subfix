@@ -1,5 +1,6 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:subfix/components/file_selector.dart';
 import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/main_menu_bar.dart';
@@ -38,12 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _initThemes() async {
-    final loaded = await loadThemes();
-    setState(() {
-      themes = loaded;
-      activeTheme = themes["default"] ?? defaultTheme;
-    });
-  }
+  final prefs = await SharedPreferences.getInstance();
+
+  final savedName = prefs.getString("active_theme") ?? "default";
+
+  final loaded = await loadThemes();
+
+  setState(() {
+    themes = loaded;
+    activeThemeName = savedName;
+    activeTheme = themes[savedName] ?? defaultTheme;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
       activeTheme: activeTheme,
       themes: themes,
       activeThemeName: activeThemeName,
-      onThemeSelected: (value) {
+      onThemeSelected: (value) async {
+        final prefs = await SharedPreferences.getInstance();
+
         setState(() {
           activeThemeName = value;
           activeTheme = themes[value] ?? defaultTheme;
         });
+
+        await prefs.setString("active_theme", value);
       },
       child: Scaffold(
         backgroundColor: activeTheme.backgroundPrimary,
@@ -147,7 +158,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         side: BorderSide(color: activeTheme.accent),
                       ),
-                      child: Text("Clear", style: TextStyles.altButtonText(activeTheme)),
+                      child: Text(
+                        "Clear",
+                        style: TextStyles.altButtonText(activeTheme),
+                      ),
                     ),
                     SizedBox(width: 8),
                     ElevatedButton(
@@ -169,7 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadiusGeometry.circular(8),
                         ),
                       ),
-                      child: Text("Apply", style: TextStyles.buttonText(activeTheme)),
+                      child: Text(
+                        "Apply",
+                        style: TextStyles.buttonText(activeTheme),
+                      ),
                     ),
                   ],
                 ),
