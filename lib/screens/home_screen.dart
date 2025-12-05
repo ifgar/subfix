@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 SizedBox(height: 4),
-                FileSelectorComment(isUtf: isUtf),
+                FileSelectorComment(isUtf: isUtf, activeTheme: activeTheme),
                 SizedBox(height: 16),
                 OffsetSelector(
                   offsetController: offsetController,

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class FileSelectorComment extends StatelessWidget {
   final bool? isUtf;
+  final AppTheme activeTheme;
 
-  const FileSelectorComment({super.key, required this.isUtf});
+  const FileSelectorComment({
+    super.key,
+    required this.isUtf,
+    required this.activeTheme,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,7 @@ class FileSelectorComment extends StatelessWidget {
         if (isUtf == null)
           Row(
             children: [
-              Icon(Icons.info_outline, size: 16, color: AppColors.secondary),
+              Icon(Icons.info_outline, size: 16, color: activeTheme.secondary),
               Padding(
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
