@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class FileSelector extends StatelessWidget {
   final VoidCallback onPressed;
   final String selectedFileName;
+  final AppTheme activeTheme;
 
   const FileSelector({
     super.key,
     required this.onPressed,
     required this.selectedFileName,
+    required this.activeTheme,
   });
 
   @override
@@ -22,8 +24,8 @@ class FileSelector extends StatelessWidget {
           height: 32,
           width: 350,
           decoration: BoxDecoration(
-            color: AppColors.backgroundLight,
-            border: Border.all(color: AppColors.secondary),
+            color: activeTheme.backgroundLight,
+            border: Border.all(color: activeTheme.secondary),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
@@ -36,7 +38,7 @@ class FileSelector extends StatelessWidget {
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(0, 40),
-            backgroundColor: AppColors.accent,
+            backgroundColor: activeTheme.accent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusGeometry.circular(8),
             ),

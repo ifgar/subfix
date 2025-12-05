@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 4),
                 FileSelector(
                   selectedFileName: selectedFileName,
+                  activeTheme: activeTheme,
                   onPressed: () async {
                     const type = XTypeGroup(
                       label: ".srt, .sub, .ass",
