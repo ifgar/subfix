@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/services.dart';
 import 'package:subfix/core/app_theme.dart';
 
 final AppTheme defaultTheme = AppTheme(
@@ -12,13 +13,11 @@ final AppTheme defaultTheme = AppTheme(
   backgroundLight: Color(0xFF292E42),
 );
 
-Future<Map<String, AppTheme>> loadThemes(String path) async {
-  final file = File(path);
-  if (!await file.exists()) return {"default": defaultTheme};
+Future<Map<String, AppTheme>> loadThemes() async {
+  final text = await rootBundle.loadString("themes.conf");
+  final lines = text.split("\n");
 
-  final lines = await file.readAsLines();
   final themes = <String, AppTheme>{};
-
   String? currentName;
   final currentMap = <String, String>{};
 
@@ -43,5 +42,8 @@ Future<Map<String, AppTheme>> loadThemes(String path) async {
   }
 
   commit();
+
+  // fallback
+  themes['default'] ??= defaultTheme;
   return themes;
 }

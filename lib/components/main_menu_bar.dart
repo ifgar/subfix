@@ -87,6 +87,9 @@ class _MainMenuBarState extends State<MainMenuBar> {
           fileController: fileController,
           helpController: helpController,
           themesController: themesController,
+          themes: widget.themes,
+          activeThemeName: widget.activeThemeName,
+          onThemeSelected: widget.onThemeSelected,
         ),
         Expanded(child: widget.child),
       ],
@@ -151,7 +154,21 @@ class _MenuRow extends StatelessWidget {
           _MenuButton(
             id: "themes",
             label: "Themes",
-            items: [],
+            items: themes.keys.map((name) {
+              final isActive = name == activeThemeName;
+
+              return MenuItemButton(
+                onPressed: () => onThemeSelected(name),
+                child: Row(
+                  children: [
+                    if (isActive)
+                      Icon(Icons.check, size: 14, color: AppColors.primary),
+                    if (isActive) SizedBox(width: 6),
+                    Text(name, style: TextStyles.bodyText),
+                  ],
+                ),
+              );
+            }).toList(),
             controller: themesController,
             isOpen: openMenuId == "themes",
             isAnyOpen: openMenuId != null,

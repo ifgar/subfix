@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _initThemes() async {
-    final loaded = await loadThemes("themes.conf");
+    final loaded = await loadThemes();
     setState(() {
       themes = loaded;
       activeTheme = themes["default"] ?? defaultTheme;
@@ -51,7 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return MainMenuBar(
       themes: themes,
       activeThemeName: activeThemeName,
-      onThemeSelected: (value){},
+      onThemeSelected: (value) {
+        setState(() {
+          activeThemeName = value;
+          activeTheme = themes[value] ?? defaultTheme;
+        });
+      },
       child: Scaffold(
         backgroundColor: AppColors.backgroundDark,
         body: Center(
