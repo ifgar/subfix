@@ -99,6 +99,10 @@ class _MenuRow extends StatelessWidget {
   final void Function(String id, MenuController controller) onOpenMenu;
   final VoidCallback onCloseMenu;
 
+  final Map<String, AppTheme> themes;
+  final String activeThemeName;
+  final void Function(String name) onThemeSelected;
+
   final MenuController fileController;
   final MenuController helpController;
   final MenuController themesController;
@@ -110,6 +114,9 @@ class _MenuRow extends StatelessWidget {
     required this.fileController,
     required this.helpController,
     required this.themesController,
+    required this.themes,
+    required this.activeThemeName,
+    required this.onThemeSelected,
   });
 
   @override
