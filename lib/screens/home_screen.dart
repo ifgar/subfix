@@ -5,11 +5,13 @@ import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/main_menu_bar.dart';
 import 'package:subfix/components/offset_selector.dart';
 import 'package:subfix/core/app_colors.dart';
+import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/encoding.dart';
 import 'package:subfix/core/sync_ass.dart';
 import 'package:subfix/core/sync_srt.dart';
 import 'package:subfix/core/sync_sub.dart';
 import 'package:subfix/core/text_styles.dart';
+import 'package:subfix/core/themes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedFileExtension = "";
   double selectedOffset = 0.0;
   bool? isUtf;
+  AppTheme activeTheme = defaultTheme;
+  Map<String, AppTheme> themes = {"default": defaultTheme};
 
   final offsetController = TextEditingController();
 
