@@ -6,11 +6,19 @@ import 'package:subfix/core/srt_offset.dart';
 
 SrtOffset processSrtOffset(double offset) {
   int entero = offset.toInt();
-  int ms = ((offset - entero) * 1000).toInt();
+  int ms = ((offset - entero) * 1000).round();
 
   int h = (entero / 3600).toInt();
-  int m = ((entero % 3600) / 60).toInt();
-  int s = entero % 60;
+  int m = ((entero.abs() % 3600) / 60).toInt();
+  int s = entero.abs() % 60;
+
+  // % with negative values breaks minutes/seconds.
+  // Hours are fine (no modulo).
+  // m and s use abs() and reapply the sign.
+  if (offset < 0) {
+    m *= -1;
+    s *= -1;
+  }
 
   return SrtOffset(h, m, s, ms);
 }
