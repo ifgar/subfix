@@ -11,12 +11,12 @@ void main() async {
     await windowManager.ensureInitialized();
 
     WindowOptions opts = const WindowOptions(
-      size: Size(500, 250), // default size
       center: true,
-      minimumSize: Size(500, 250), // minimum size
+      titleBarStyle: TitleBarStyle.hidden,
     );
 
     windowManager.waitUntilReadyToShow(opts, () async {
+      await windowManager.setResizable(false);
       await windowManager.show();
       await windowManager.focus();
     });

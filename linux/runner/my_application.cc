@@ -52,8 +52,9 @@ static void my_application_activate(GApplication* application) {
   } else {
     gtk_window_set_title(window, "subfix");
   }
-
-  gtk_window_set_default_size(window, 1280, 720);
+  
+  gtk_window_set_decorated(window, FALSE);
+  gtk_window_set_default_size(window, 500, 250);
 
   g_autoptr(FlDartProject) project = fl_dart_project_new();
   fl_dart_project_set_dart_entrypoint_arguments(project, self->dart_entrypoint_arguments);
