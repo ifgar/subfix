@@ -4,7 +4,6 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:subfix/core/app_theme.dart';
-import 'package:subfix/core/text_styles.dart';
 
 class MainMenuBar extends StatefulWidget {
   final Map<String, AppTheme> themes;
@@ -135,7 +134,10 @@ class _MenuRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          Icon(Icons.abc, color: activeTheme.primary),
+          Padding(
+            padding: const EdgeInsets.only(right: 4),
+            child: Icon(Icons.article, color: activeTheme.primary),
+          ),
 
           _MenuButton(
             id: 'file',
@@ -148,11 +150,11 @@ class _MenuRow extends StatelessWidget {
             onClose: onCloseMenu,
             items: [
               MenuItemButton(
-                child: Text('Save', style: TextStyles.bodyText(activeTheme)),
+                child: Text('Save', style: TextStyle(color: activeTheme.primary)),
                 onPressed: () {},
               ),
               MenuItemButton(
-                child: Text('Exit', style: TextStyles.bodyText(activeTheme)),
+                child: Text('Exit', style: TextStyle(color: activeTheme.primary)),
                 onPressed: () {
                   exit(0);
                 },
@@ -178,7 +180,7 @@ class _MenuRow extends StatelessWidget {
                     if (isActive)
                       Icon(Icons.check, size: 14, color: activeTheme.primary),
                     if (isActive) SizedBox(width: 6),
-                    Text(name, style: TextStyles.bodyText(activeTheme)),
+                    Text(name, style: TextStyle(color: activeTheme.primary)),
                   ],
                 ),
               );
@@ -195,7 +197,7 @@ class _MenuRow extends StatelessWidget {
             onClose: onCloseMenu,
             items: [
               MenuItemButton(
-                child: Text('About', style: TextStyles.bodyText(activeTheme)),
+                child: Text('About', style: TextStyle(color: activeTheme.primary)),
                 onPressed: () {},
               ),
             ],
@@ -245,7 +247,7 @@ class _MenuButton extends StatelessWidget {
         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             side: BorderSide(color: activeTheme.tertiary),
           ),
         ),
@@ -261,10 +263,11 @@ class _MenuButton extends StatelessWidget {
               ctrl.open();
             }
           },
+          // This needs optimization
           child: Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(4),
               splashColor: activeTheme.tertiary,
               hoverColor: active ? activeTheme.tertiary : activeTheme.tertiary,
               highlightColor: active
@@ -280,12 +283,13 @@ class _MenuButton extends StatelessWidget {
                 }
               },
               child: Container(
+                height: 22,
                 decoration: BoxDecoration(
                   color: active ? activeTheme.tertiary : Colors.transparent,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(label, style: TextStyles.bodyText(activeTheme)),
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Center(child: Text(label, style: TextStyle(color: activeTheme.primary))),
               ),
             ),
           ),
