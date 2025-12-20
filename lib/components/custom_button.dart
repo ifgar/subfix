@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
     required this.title,
     required this.onPressed,
     required this.activeTheme,
-    required this.filled,
+    this.filled = true,
     this.width = 96,
   });
 

@@ -1,6 +1,7 @@
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:subfix/components/custom_button.dart';
 import 'package:subfix/components/file_selector.dart';
 import 'package:subfix/components/file_selector_comment.dart';
 import 'package:subfix/components/main_menu_bar.dart';
@@ -166,33 +167,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    OutlinedButton(
-                      onPressed: () => _onClearPressed(),
-                      style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(8),
-                        ),
-                        side: BorderSide(color: activeTheme.accent),
-                      ),
-                      child: Text(
-                        "Clear",
-                        style: TextStyles.altButtonText(activeTheme),
-                      ),
+                    CustomButton(
+                      title: "Clear",
+                      onPressed: _onClearPressed,
+                      activeTheme: activeTheme,
+                      width: 80,
+                      filled: false,
                     ),
                     SizedBox(width: 8),
-                    ElevatedButton(
-                      onPressed: () => _onApplyPressed(),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(0, 40),
-                        backgroundColor: activeTheme.accent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(8),
-                        ),
-                      ),
-                      child: Text(
-                        "Apply",
-                        style: TextStyles.buttonText(activeTheme),
-                      ),
+                    CustomButton(
+                      title: "Apply",
+                      onPressed: _onApplyPressed,
+                      activeTheme: activeTheme,
                     ),
                   ],
                 ),
