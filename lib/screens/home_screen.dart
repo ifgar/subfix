@@ -73,6 +73,31 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _onOffsetValueChanged(String value) {
+    final v = value.replaceAll(",", ".");
+
+    final offset = double.tryParse(v);
+    if (offset != null) {
+      setState(() {
+        selectedOffset = offset;
+      });
+    }
+  }
+
+  void _onOffsetDecreasePressed() {
+    setState(() {
+      selectedOffset = double.parse((selectedOffset - 0.1).toStringAsFixed(2));
+      offsetController.text = selectedOffset.toStringAsFixed(2);
+    });
+  }
+
+  void _onOffsetIncreasePressed() {
+    setState(() {
+      selectedOffset = double.parse((selectedOffset + 0.1).toStringAsFixed(2));
+      offsetController.text = selectedOffset.toStringAsFixed(2);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainMenuBar(
@@ -131,32 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 OffsetSelector(
                   offsetController: offsetController,
                   activeTheme: activeTheme,
-                  onChanged: (value) {
-                    final v = value.replaceAll(",", ".");
-
-                    final offset = double.tryParse(v);
-                    if (offset != null) {
-                      setState(() {
-                        selectedOffset = offset;
-                      });
-                    }
-                  },
-                  onDecrease: () {
-                    setState(() {
-                      selectedOffset = double.parse(
-                        (selectedOffset - 0.1).toStringAsFixed(2),
-                      );
-                      offsetController.text = selectedOffset.toStringAsFixed(2);
-                    });
-                  },
-                  onIncrease: () {
-                    setState(() {
-                      selectedOffset = double.parse(
-                        (selectedOffset + 0.1).toStringAsFixed(2),
-                      );
-                      offsetController.text = selectedOffset.toStringAsFixed(2);
-                    });
-                  },
+                  onChanged: (value) => _onOffsetValueChanged(value),
+                  onDecrease: () => _onOffsetDecreasePressed(),
+                  onIncrease: () => _onOffsetIncreasePressed(),
                 ),
                 SizedBox(height: 16),
                 Row(
