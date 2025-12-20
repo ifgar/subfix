@@ -16,7 +16,7 @@ class CustomButton extends StatefulWidget {
     required this.onPressed,
     required this.activeTheme,
     this.filled = true,
-    this.width = 96,
+    this.width = 90,
   });
 
   @override

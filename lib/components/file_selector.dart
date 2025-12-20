@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subfix/components/custom_button.dart';
 import 'package:subfix/core/app_theme.dart';
 import 'package:subfix/core/text_styles.dart';
 
@@ -34,17 +35,7 @@ class FileSelector extends StatelessWidget {
           ),
         ),
         SizedBox(width: 8),
-        ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size(0, 40),
-            backgroundColor: activeTheme.accent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(8),
-            ),
-          ),
-          child: Text("Select", style: TextStyles.buttonText(activeTheme)),
-        ),
+        CustomButton(title: "Select", onPressed: onPressed, activeTheme: activeTheme)
       ],
     );
   }
