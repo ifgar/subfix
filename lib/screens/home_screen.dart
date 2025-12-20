@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    if (applied)
+                    if (applied && selectedFileName.isNotEmpty)
                       Positioned(
                         left: 330,
                         child: Text(
