@@ -98,6 +98,24 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Future<void> _onSelectPressed() async {
+    const type = XTypeGroup(
+      label: ".srt, .sub, .ass",
+      extensions: ["srt", "sub", "ass"],
+    );
+    final file = await openFile(acceptedTypeGroups: [type]);
+    if (file == null) return;
+
+    final ok = await isUtf8(file.path);
+
+    setState(() {
+      selectedFilePath = file.path;
+      selectedFileName = file.name;
+      selectedFileExtension = selectedFileName.split(".").last;
+      isUtf = ok;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainMenuBar(
@@ -132,23 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 FileSelector(
                   selectedFileName: selectedFileName,
                   activeTheme: activeTheme,
-                  onPressed: () async {
-                    const type = XTypeGroup(
-                      label: ".srt, .sub, .ass",
-                      extensions: ["srt", "sub", "ass"],
-                    );
-                    final file = await openFile(acceptedTypeGroups: [type]);
-                    if (file == null) return;
-
-                    final ok = await isUtf8(file.path);
-
-                    setState(() {
-                      selectedFilePath = file.path;
-                      selectedFileName = file.name;
-                      selectedFileExtension = selectedFileName.split(".").last;
-                      isUtf = ok;
-                    });
-                  },
+                  onPressed: () => _onSelectPressed(),
                 ),
                 SizedBox(height: 4),
                 FileSelectorComment(isUtf: isUtf, activeTheme: activeTheme),
