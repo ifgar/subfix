@@ -62,6 +62,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _onClearPressed() {
+    setState(() {
+      selectedFilePath = "/...";
+      selectedFileName = "";
+      selectedFileExtension = "";
+      selectedOffset = 0.0;
+      offsetController.text = "";
+      isUtf = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainMenuBar(
@@ -152,16 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     OutlinedButton(
-                      onPressed: () {
-                        setState(() {
-                          selectedFilePath = "/...";
-                          selectedFileName = "";
-                          selectedFileExtension = "";
-                          selectedOffset = 0.0;
-                          offsetController.text = "";
-                          isUtf = null;
-                        });
-                      },
+                      onPressed: () => _onClearPressed(),
                       style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadiusGeometry.circular(8),
