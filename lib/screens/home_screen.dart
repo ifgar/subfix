@@ -33,6 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final offsetController = TextEditingController();
 
+  bool applied = false;
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (selectedFileExtension.toLowerCase() == "ass") {
       syncAss(selectedFilePath, selectedOffset);
     }
+    setState(() {
+      applied = true;
+    });
   }
 
   void _onClearPressed() {
@@ -71,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedOffset = 0.0;
       offsetController.text = "";
       isUtf = null;
+      applied = false;
     });
   }
 
@@ -114,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedFileName = file.name;
       selectedFileExtension = selectedFileName.split(".").last;
       isUtf = ok;
+      applied = false;
     });
   }
 
@@ -164,22 +171,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   onIncrease: () => _onOffsetIncreasePressed(),
                 ),
                 SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Stack(
+                  alignment: AlignmentGeometry.center,
                   children: [
-                    CustomButton(
-                      title: "Clear",
-                      onPressed: _onClearPressed,
-                      activeTheme: activeTheme,
-                      width: 80,
-                      filled: false,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomButton(
+                          title: "Clear",
+                          onPressed: _onClearPressed,
+                          activeTheme: activeTheme,
+                          width: 80,
+                          filled: false,
+                        ),
+                        SizedBox(width: 8),
+                        CustomButton(
+                          title: "Apply",
+                          onPressed: _onApplyPressed,
+                          activeTheme: activeTheme,
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 8),
-                    CustomButton(
-                      title: "Apply",
-                      onPressed: _onApplyPressed,
-                      activeTheme: activeTheme,
-                    ),
+                    if (applied)
+                      Positioned(
+                        left: 330,
+                        child: Text(
+                          "Offset applied",
+                          style: TextStyle(color: activeTheme.secondary),
+                        ),
+                      ),
                   ],
                 ),
               ],
