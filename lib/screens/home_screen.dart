@@ -39,18 +39,28 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _initThemes() async {
-  final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
-  final savedName = prefs.getString("active_theme") ?? "default";
+    final savedName = prefs.getString("active_theme") ?? "default";
 
-  final loaded = await loadThemes();
+    final loaded = await loadThemes();
 
-  setState(() {
-    themes = loaded;
-    activeThemeName = savedName;
-    activeTheme = themes[savedName] ?? defaultTheme;
-  });
-}
+    setState(() {
+      themes = loaded;
+      activeThemeName = savedName;
+      activeTheme = themes[savedName] ?? defaultTheme;
+    });
+  }
+
+  void _onApplyPressed() {
+    if (selectedFileExtension.toLowerCase() == "srt") {
+      syncSrt(selectedFilePath, selectedOffset);
+    } else if (selectedFileExtension.toLowerCase() == "sub") {
+      syncSub(selectedFilePath, selectedOffset);
+    } else if (selectedFileExtension.toLowerCase() == "ass") {
+      syncAss(selectedFilePath, selectedOffset);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,17 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(width: 8),
                     ElevatedButton(
-                      onPressed: () {
-                        if (selectedFileExtension.toLowerCase() == "srt") {
-                          syncSrt(selectedFilePath, selectedOffset);
-                        } else if (selectedFileExtension.toLowerCase() ==
-                            "sub") {
-                          syncSub(selectedFilePath, selectedOffset);
-                        } else if (selectedFileExtension.toLowerCase() ==
-                            "ass") {
-                          syncAss(selectedFilePath, selectedOffset);
-                        }
-                      },
+                      onPressed: () => _onApplyPressed(),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
                         backgroundColor: activeTheme.accent,
