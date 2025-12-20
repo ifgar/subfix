@@ -30,7 +30,7 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return AnimatedScale(
       scale: _buttonScale,
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 100),
       child: Material(
         color: widget.filled
             ? widget.activeTheme.accent
@@ -45,9 +45,9 @@ class _CustomButtonState extends State<CustomButton> {
         ),
         child: InkWell(
           onTap: () {
-            widget.onPressed;
+            widget.onPressed();
             setState(() {
-              _buttonScale = 0.85;
+              _buttonScale = 0.95;
               Future.delayed(const Duration(milliseconds: 80), () {
                 if (!mounted) return;
                 setState(() => _buttonScale = 1.0);
