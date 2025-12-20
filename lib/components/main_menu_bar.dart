@@ -1,5 +1,6 @@
 // Partly AI-generated implementation, subject to review and refinement.
 
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:subfix/core/app_theme.dart';
@@ -152,7 +153,9 @@ class _MenuRow extends StatelessWidget {
               ),
               MenuItemButton(
                 child: Text('Exit', style: TextStyles.bodyText(activeTheme)),
-                onPressed: () {},
+                onPressed: () {
+                  exit(0);
+                },
               ),
             ],
           ),
@@ -179,7 +182,7 @@ class _MenuRow extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList()
+            }).toList(),
           ),
           _MenuButton(
             id: 'help',
@@ -236,7 +239,9 @@ class _MenuButton extends StatelessWidget {
       menuChildren: items,
       onClose: () => onClose(),
       style: MenuStyle(
-        backgroundColor: WidgetStatePropertyAll(activeTheme.backgroundSecondary),
+        backgroundColor: WidgetStatePropertyAll(
+          activeTheme.backgroundSecondary,
+        ),
         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
@@ -262,7 +267,9 @@ class _MenuButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               splashColor: activeTheme.tertiary,
               hoverColor: active ? activeTheme.tertiary : activeTheme.tertiary,
-              highlightColor: active ? activeTheme.tertiary : Colors.transparent,
+              highlightColor: active
+                  ? activeTheme.tertiary
+                  : Colors.transparent,
               focusColor: active ? activeTheme.tertiary : Colors.transparent,
               onTap: () {
                 if (active) {
