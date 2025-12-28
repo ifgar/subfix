@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gtk_theme_fl/gtk_theme_fl.dart';
 import 'package:subfix/screens/home_screen.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -21,6 +22,9 @@ void main() async {
       await windowManager.focus();
     });
   }
+
+  GtkThemeData themeData = await GtkThemeData.initialize();
+
   runApp(const MainApp());
 }
 
