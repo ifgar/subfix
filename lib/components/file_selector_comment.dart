@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_theme.dart';
+import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class FileSelectorComment extends StatelessWidget {
   final bool? isUtf;
-  final AppTheme activeTheme;
 
   const FileSelectorComment({
     super.key,
     required this.isUtf,
-    required this.activeTheme,
   });
 
   @override
@@ -19,12 +17,12 @@ class FileSelectorComment extends StatelessWidget {
         if (isUtf == null)
           Row(
             children: [
-              Icon(Icons.info_outline, size: 16, color: activeTheme.secondary),
+              Icon(Icons.info_outline, size: 16, color: AppColors.secondary),
               Padding(
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "Supported formats: .srt, .sub, .ass",
-                  style: TextStyles.bodyComment(activeTheme),
+                  style: TextStyles.bodyComment(),
                 ),
               ),
             ],
@@ -37,7 +35,7 @@ class FileSelectorComment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "File is ready to be converted",
-                  style: TextStyles.bodyComment(activeTheme),
+                  style: TextStyles.bodyComment(),
                 ),
               ),
             ],
@@ -50,7 +48,7 @@ class FileSelectorComment extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 4),
                 child: Text(
                   "File is not UTF-8. Output will be converted.",
-                  style: TextStyles.bodyComment(activeTheme),
+                  style: TextStyles.bodyComment(),
                 ),
               ),
             ],

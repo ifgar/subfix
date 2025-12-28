@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_theme.dart';
+import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/core/color_utils.dart';
 import 'package:subfix/core/text_styles.dart';
 
 class CustomButton extends StatefulWidget {
   final String title;
   final VoidCallback onPressed;
-  final AppTheme activeTheme;
   final bool filled;
   final int width;
 
@@ -14,7 +13,6 @@ class CustomButton extends StatefulWidget {
     super.key,
     required this.title,
     required this.onPressed,
-    required this.activeTheme,
     this.filled = true,
     this.width = 90,
   });
@@ -33,14 +31,14 @@ class _CustomButtonState extends State<CustomButton> {
       duration: const Duration(milliseconds: 100),
       child: Material(
         color: widget.filled
-            ? widget.activeTheme.accent
-            : widget.activeTheme.backgroundPrimary,
+            ? AppColors.accent
+            : AppColors.backgroundDark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(8),
           side: BorderSide(
             color: widget.filled
                 ? Colors.transparent
-                : widget.activeTheme.accent,
+                : AppColors.accent,
           ),
         ),
         child: InkWell(
@@ -56,11 +54,11 @@ class _CustomButtonState extends State<CustomButton> {
           },
           borderRadius: BorderRadius.circular(8),
           splashColor: widget.filled
-              ? darken(widget.activeTheme.accent, -0.05)
-              : darken(widget.activeTheme.backgroundPrimary, -0.025),
+              ? darken(AppColors.accent, -0.05)
+              : darken(AppColors.backgroundDark, -0.025),
           hoverColor: widget.filled
-              ? darken(widget.activeTheme.accent, 0.05)
-              : darken(widget.activeTheme.backgroundPrimary, 0.025),
+              ? darken(AppColors.accent, 0.05)
+              : darken(AppColors.backgroundDark, 0.025),
           child: SizedBox(
             height: 32,
             width: widget.width.toDouble(),
@@ -68,8 +66,8 @@ class _CustomButtonState extends State<CustomButton> {
               child: Text(
                 widget.title,
                 style: widget.filled
-                    ? TextStyles.buttonText(widget.activeTheme)
-                    : TextStyles.altButtonText(widget.activeTheme),
+                    ? TextStyles.buttonText()
+                    : TextStyles.altButtonText(),
               ),
             ),
           ),

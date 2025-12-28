@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:subfix/core/app_theme.dart';
 
 class TextStyles {
-  static TextStyle bodyText(AppTheme theme) {
+  static TextStyle bodyText() {
     return TextStyle(
-      color: theme.primary,
+      color: Color(0xFFC0CAF5),
       fontSize: 16,
       fontWeight: FontWeight.w500,
     );
   }
 
-  static TextStyle bodyTitle(AppTheme theme) {
+  static TextStyle bodyTitle() {
     return TextStyle(
-      color: theme.primary,
+      color: Color(0xFFC0CAF5),
       fontSize: 20,
       fontWeight: FontWeight.bold,
     );
   }
 
-  static TextStyle bodyComment(AppTheme theme) {
+  static TextStyle bodyComment() {
     return TextStyle(
-      color: theme.secondary,
+      color: Color(0xFF8289B0),
       fontSize: 12,
       fontWeight: FontWeight.w500,
     );
   }
 
-  static TextStyle buttonText(AppTheme theme) {
+  static TextStyle buttonText() {
     return TextStyle(
-      color: theme.backgroundPrimary,
+      color: Color(0xFF1F2335),
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
   }
 
-  static TextStyle altButtonText(AppTheme theme) {
+  static TextStyle altButtonText() {
     return TextStyle(
-      color: theme.accent,
+      color: Color(0xFF7DCFFF),
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
