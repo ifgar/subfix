@@ -1,16 +1,28 @@
 import 'dart:ui';
 
+import 'package:gtk_theme_fl/gtk_theme_fl.dart';
+
 class AppColors {
   // Basic colors
-  static const Color primary = Color(0xFFC0CAF5);
-  static const Color secondary = Color(0xFF8289B0);
-  static const Color tertiary = Color(0xFF565F89);
+  static late Color primary;
+  static late Color secondary;
+  static late Color tertiary;
 
   // Accents
-  static const Color accent = Color(0xFF7DCFFF);
-  static const Color accentRed = Color(0xFFC53B53);
+  static late Color accent;
+  static late Color accentRed;
 
   // Backgrounds
-  static const Color backgroundDark = Color(0xFF1F2335);
-  static const Color backgroundLight = Color(0xFF292E42);
+  static late Color backgroundDark;
+  static late Color backgroundLight;
+
+  static void init(GtkThemeData themeData) {
+    primary = Color(themeData.theme_text_color);
+    secondary = Color(themeData.theme_text_color);
+    tertiary = Color(themeData.theme_text_color);
+    accent = Color(themeData.theme_selected_bg_color);
+    accentRed = Color(themeData.error_color);
+    backgroundDark = Color(themeData.theme_bg_color);
+    backgroundLight = Color(themeData.theme_bg_color);
+  }
 }

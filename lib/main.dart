@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gtk_theme_fl/gtk_theme_fl.dart';
+import 'package:subfix/core/app_colors.dart';
 import 'package:subfix/screens/home_screen.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -24,6 +25,7 @@ void main() async {
   }
 
   GtkThemeData themeData = await GtkThemeData.initialize();
+  AppColors.init(themeData);
 
   runApp(const MainApp());
 }
