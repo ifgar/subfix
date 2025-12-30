@@ -29,9 +29,9 @@ CliArgs parseCliArgs(List<String> args) {
 bool runCliIfRequested(List<String> args) {
   final cliArgs = parseCliArgs(args);
 
-  if (cliArgs.subFile != null && cliArgs.offset != null) {
+  if (cliArgs.subFile == null || cliArgs.offset == null) {
     if (args.isNotEmpty) {
-      stderr.writeln('Uso: subfix <archivo.sub|srt|ass> <offset>');
+      stderr.writeln("Usage: subfix <file.sub|srt|ass> <offset>");
     }
     return false;
   }
@@ -39,7 +39,7 @@ bool runCliIfRequested(List<String> args) {
   final subFile = cliArgs.subFile!;
   final offset = cliArgs.offset!;
 
-  final ext = subFile.split(".").last;
+  final ext = subFile.toLowerCase().split(".").last;
 
   if (ext == "srt") {
     syncSrt(subFile, offset);
@@ -48,7 +48,7 @@ bool runCliIfRequested(List<String> args) {
   } else if (ext == "ass") {
     syncAss(subFile, offset);
   } else {
-    stderr.writeln('Formato no soportado: .$ext');
+    stderr.writeln("Unsupported format: .$ext");
     return false;
   }
 
