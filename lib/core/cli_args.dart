@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:subfix/core/sync_ass.dart';
 import 'package:subfix/core/sync_srt.dart';
 import 'package:subfix/core/sync_sub.dart';
@@ -28,6 +30,9 @@ bool runCliIfRequested(List<String> args) {
   final cliArgs = parseCliArgs(args);
 
   if (cliArgs.subFile != null && cliArgs.offset != null) {
+    if (args.isNotEmpty) {
+      stderr.writeln('Uso: subfix <archivo.sub|srt|ass> <offset>');
+    }
     return false;
   }
 
@@ -43,6 +48,7 @@ bool runCliIfRequested(List<String> args) {
   } else if (ext == "ass") {
     syncAss(subFile, offset);
   } else {
+    stderr.writeln('Formato no soportado: .$ext');
     return false;
   }
 
