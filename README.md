@@ -42,6 +42,20 @@ The adjusted file is saved next to the original using the pattern `name[OFFSET].
 
 Currently tested on Linux. Other desktop platforms may work but are not officially supported yet.
 
+## CLI usage
+
+Subfix can also be used from the command line: `subfix <file.srt|sub|ass> <offset>`
+
+#### Example:
+```bash
+subfix movie.ass -1.5
+```
+#### Notes:
+- This mode is provided for convenience.
+- On Linux, some GTK warnings may be printed due to Flutter initialization.
+- For scripting and automation, this is still supported but not the primary use case.
+
+
 
 ## Screenshots
 
