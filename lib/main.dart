@@ -10,7 +10,7 @@ import 'package:window_manager/window_manager.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (runCliIfRequested(args)) () => exit(0);
+  if (runCliIfRequested(args)) exit(0);
 
   if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
     await windowManager.ensureInitialized();
