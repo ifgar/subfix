@@ -13,7 +13,7 @@ dependencies:
   window_manager: ^0.5.1
   gtk_theme_fl:
     git:
-      url: https://github.com/gtk-flutter/gtk_theme_fl.git
+      url: https://github.com/ifgar/gtk_theme_fl.git
       ref: master
 
 dev_dependencies:

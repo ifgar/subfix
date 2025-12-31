@@ -149,8 +149,8 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "4e1124aca035a11915eae9a964338a2f7e7b84af"
-      url: "https://github.com/gtk-flutter/gtk_theme_fl.git"
+      resolved-ref: "03f20cdb9638101b4dee09a33e371e05c0eff801"
+      url: "https://github.com/ifgar/gtk_theme_fl.git"
     source: git
     version: "0.0.1"
   http:
