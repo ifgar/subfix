@@ -15,6 +15,14 @@ class AppColors {
   static late Color backgroundDark;
   static late Color backgroundLight;
 
+  // Buttons
+  static late Color buttonBg;
+  static late Color buttonFg;
+  static late Color buttonHover;
+
+  // Border
+  static late Color border;
+
   static void init(GtkThemeData themeData) {
     primary = Color(themeData.theme_text_color);
     secondary = Color(themeData.theme_text_color);
@@ -22,5 +30,9 @@ class AppColors {
     accentRed = Color(themeData.error_color);
     backgroundDark = Color(themeData.theme_bg_color);
     backgroundLight = Color(themeData.theme_base_color);
+    buttonBg = Color(themeData.button_bg);
+    buttonFg = Color(themeData.button_bg);
+    buttonHover = Color(themeData.button_hover);
+    border = Color(themeData.borders);
   }
 }
